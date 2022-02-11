@@ -1,0 +1,14 @@
+#1. No error
+
+#2. name is not defined
+
+#3. 12345
+    person has no attribute password
+
+#4. True
+    False
+
+#5. value
+    1, 5, 1, 8, 3, 3
+    5
+    5
