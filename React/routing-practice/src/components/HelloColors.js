@@ -5,7 +5,7 @@ const HelloColors = (props) => {
     if (isNaN(word)) {
         return (
             <h2 style={{ color: fontColor, backgroundColor: backgroundColor }}>
-                Word is: {word}
+                The word is: {word}
             </h2>
             );
     } else {
