@@ -23,3 +23,25 @@ module.exports.findOneProduct = (req, res) => {
             res.json({ message: 'Something went wrong', error: err })
         });
 }
+module.exports.editOneProduct = (req, res) => {
+    Product.findOneAndUpdate(
+        { _id: req.params.id },
+        req.body,
+        { new: true, runValidators: true }
+    )
+        .then(updatedProduct => {
+            res.json({ products: updatedProduct })
+        })
+        .catch((err) => {
+            res.json({ message: 'Something went wrong', error: err })
+        });
+}
+module.exports.deleteProduct = (req, res) => {
+    Product.deleteOne({ _id: req.params.id })
+        .then(result => {
+            res.json({ result: result })
+        })
+        .catch((err) => {
+            res.json({ message: 'Something went wrong', error: err })
+        });
+}
