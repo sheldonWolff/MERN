@@ -1,30 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import DeleteButton from './DeleteButton';
 const ProductList = (props) => {
-    const {product, setProduct} = props;
-    const { removeFromDom, products, setProducts } = props;
-    const deleteAProduct = (id) => {
-        axios.delete(`http://localhost:8000/api/delete/product/${id}`)
-            .then(res => {
-                removeFromDom(id)
-            })
-            .catch(err => console.log(err))
-    }
+    const [product, setProduct] = useState([]);
     useEffect(() => {
-        console.log('productList')
-        axios.get("http://localhost:8000/api")
-        .then((res)=>{
-            console.log(res.data.products);
-            setProduct(res.data.products);
-        })
-        .catch((err) => {
-            console.log(err);
-        })
-    }, []);
+        axios.get('http://localhost:8000/api')
+            .then(res => setProduct(res.data.products));
+    })
+    const removeFromDom = id => {
+        setProduct(product.filter(products => products._id !== id));
+    }
     return (
         <div>
-            <h1>All Products:</h1>
             {
                 product.map((products, index) => {
                 return (
@@ -32,7 +20,7 @@ const ProductList = (props) => {
                         <Link to={`/product/${products._id}`}> {products.title}</Link>
                         <br/>
                         <Link to={`/product/edit/${products._id}`}>Edit</Link>
-                        <button onClick={(e)=>{deleteAProduct(products._id)}}>Delete</button>
+                        <DeleteButton id={products._id} successCallback={()=>removeFromDom(products._id)} />
                         <hr/>
                     </div>
                     

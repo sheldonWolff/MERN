@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState } from 'react'
+import React from 'react'
 import axios from 'axios';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import Main from '../src/views/Main';
@@ -7,9 +7,6 @@ import Detail from './components/Detail';
 import Update from './components/Update';
 
 function App() {
-  const removeFromDom = id => {
-    
-}
   return (
     <div className="App">
     <BrowserRouter>
